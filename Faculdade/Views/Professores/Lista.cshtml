@@ -1,0 +1,21 @@
+﻿@model List<Faculdade.Models.Professores.Professor>
+
+@{
+    var listaDeProfessores = Model;
+}
+
+<a href="/professores/cadastrar">Cadastrar</a>
+
+@foreach (var professor in listaDeProfessores)
+{
+    <p>
+        <div>
+            CPF: @professor.Cpf <br />
+            @professor.Nome @professor.Formacao
+        </div>
+        <a href="/professores/excluir/@professor.Cpf">Excluir</a> |
+        <a href="/professores/alterar?cpf=@professor.Cpf">Alterar</a>
+        <br />
+        <hr />
+    </p>
+}

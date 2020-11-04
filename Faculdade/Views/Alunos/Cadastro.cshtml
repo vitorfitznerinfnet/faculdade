@@ -1,0 +1,17 @@
+﻿@model Faculdade.Models.Alunos.CadastroModel
+
+@{
+    var errosDeCadastro = Model.ListaDeErros;
+}
+
+<form action="/alunos/cadastro" method="post">
+    <label>Nome</label><br />
+    <input type="text" name="nome" value="" /><br />
+    <label>Idade</label><br />
+    <input type="text" name="idade" value="" /><br />
+    @if (errosDeCadastro.Count > 0)
+    {
+        <p>@errosDeCadastro.First()</p>
+    }
+    <input type="submit" name="name" value="Cadastrar" />
+</form>

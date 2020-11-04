@@ -1,0 +1,10 @@
+﻿@model List<Faculdade.Controllers.Aluno>
+
+@{
+    var listaDeAlunos = Model;
+}
+
+@foreach(var aluno in listaDeAlunos)
+{ 
+    <p>Nome: @aluno.Nome <br />Idade: @aluno.Idade</p><br /><br />
+}

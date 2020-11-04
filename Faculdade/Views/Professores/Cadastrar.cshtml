@@ -1,0 +1,15 @@
+﻿<!--Dica: se vai alterar algo no sistema use POST se não use GET -->
+<form action="/professores/cadastrar" method="POST">
+    Cpf: <input type="text" name="cpf" value="" /><br />
+    Nome: <input type="text" name="nome" value="" /><br />
+    Formação acadêmica: 
+    <select name="formacao">
+        <option value="0"></option>
+        <option value="1">Pós graduação</option>
+        <option value="2">Mestre</option>
+        <option value="3">Doutor</option>
+    </select>
+    <br />
+    <input type="submit" name="" value="Cadastrar" /><br />
+    <a href="/professores/lista">Lista</a>
+</form>
