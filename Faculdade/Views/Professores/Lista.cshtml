@@ -4,7 +4,15 @@
     var listaDeProfessores = Model;
 }
 
-<a href="/professores/cadastrar">Cadastrar</a>
+<form action="/professores/lista" method="get">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Pesquisa</label>
+        <input type="text" class="form-control" aria-describedby="emailHelp" name="pesquisa">
+        <small id="emailHelp" class="form-text text-muted">Entre com o nome do professor</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Pesquisar</button>
+    <a href="/professores/cadastrar" class="btn btn-success">Cadastrar</a>
+</form>
 
 @foreach (var professor in listaDeProfessores)
 {
@@ -13,7 +21,7 @@
             CPF: @professor.Cpf <br />
             @professor.Nome @professor.Formacao
         </div>
-        <a href="/professores/excluir/@professor.Cpf">Excluir</a> |
+        <a href="/professores/excluir?cpf=@professor.Cpf">Excluir</a> |
         <a href="/professores/alterar?cpf=@professor.Cpf">Alterar</a>
         <br />
         <hr />

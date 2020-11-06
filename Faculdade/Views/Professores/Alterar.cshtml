@@ -1,1 +1,42 @@
-﻿Alterar dados do professor 2
+﻿@model Faculdade.Models.Professores.Professor
+
+@{
+    var professor = Model;
+}
+
+<!--Dica: se vai alterar algo no sistema use POST se não use GET -->
+<form action="/professores/alterar" method="POST">
+    Cpf: @professor.Cpf<br /><input type="hidden" name="cpf" value="@professor.Cpf" />
+    Nome: <input type="text" name="nome" value="@professor.Nome" /><br />
+    Formação acadêmica:
+    <select name="formacao">
+        <option value="0"></option>
+        @if (professor.Formacao == 1)
+        {
+            <option value="1" selected>Pós graduação</option>
+        }
+        else
+        {
+            <option value="1">Pós graduação</option>
+        }
+        @if (professor.Formacao == 2)
+        {
+            <option value="2" selected>Mestre</option>
+        }
+        else
+        {
+            <option value="2">Mestre</option>
+        }
+        @if (professor.Formacao == 3)
+        {
+            <option value="3" selected>Doutor</option>
+        }
+        else
+        {
+            <option value="3">Doutor</option>
+        }
+    </select>
+    <br />
+    <input type="submit" name="" value="Alterar dados" /><br />
+    <a href="/professores/lista">Lista</a>
+</form>

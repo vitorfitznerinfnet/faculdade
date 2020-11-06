@@ -1,7 +1,13 @@
-﻿Professor 2
+﻿@model Faculdade.Models.Professores.Professor
 
-<form>
-    Você tem certeza da exclusão do professor 2?<br />
-    Sim<br />
-    Não
-</form>
+@{ 
+    var professor = Model;
+}
+
+    <form action="/professores/excluir" method="post">
+        <input name="cpf" type="hidden" value="@professor.Cpf" />
+        <input name="confirmou" type="hidden" value="true" />
+        <h5>Você tem certeza da exclusão do professor: <strong>@professor.Nome?</strong></h5>
+        <button type="submit" class="btn btn-danger">Sim</button>
+        <button type="button" class="btn btn-light">Voltar</button>
+    </form>

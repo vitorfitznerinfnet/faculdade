@@ -11,9 +11,18 @@ namespace Faculdade.Controllers
     {
         static List<Professor> listaProfessores = new List<Professor>();
 
-        public ActionResult Lista()
+        public ActionResult Lista(string pesquisa)
         {
-            return View(listaProfessores);
+            if (pesquisa == null)
+            {
+                return View(listaProfessores);
+            }
+            else
+            {
+                List<Professor> listaDeProfessoresEncontradosPeloNome = listaProfessores.Where(professor => professor.Nome.Contains(pesquisa, StringComparison.InvariantCulture)).ToList();
+
+                return View(listaDeProfessoresEncontradosPeloNome);
+            }
         }
 
         [HttpGet]
@@ -37,9 +46,21 @@ namespace Faculdade.Controllers
         }
 
         [HttpGet]
-        public ActionResult Excluir()
+        public ActionResult Excluir(string cpf)
         {
-            return View();
+            Professor professor = listaProfessores.First(professor => professor.Cpf == cpf);
+
+            return View(professor);
+        }
+
+        [HttpPost]
+        public ActionResult Excluir(string cpf, bool confirmou)
+        {
+            Professor professor = listaProfessores.First(professor => professor.Cpf == cpf);
+
+            listaProfessores.Remove(professor);
+
+            return RedirectToAction("Lista");
         }
 
         [HttpGet]
@@ -48,10 +69,31 @@ namespace Faculdade.Controllers
             return View();
         }
 
-        [Route("alterar/{id}")]
-        public ActionResult Alterar(string id)
+        [HttpGet]
+        public ActionResult Alterar(string cpf)
         {
-            return View();
+            Professor professor = listaProfessores.First(professor => professor.Cpf == cpf);
+
+            return View(professor);
+        }
+
+        [HttpPost]
+        public ActionResult Alterar(string cpf, string nome, int formacao)
+        {
+            Professor professor = listaProfessores.First(professor => professor.Cpf == cpf);
+            professor.Nome = nome;
+            professor.Formacao = formacao;
+
+            return View(professor);
         }
     }
+
+    //exemplo buscar professor pelo CPF
+    //foreach (var professor in listaProfessores)
+    //{
+    //    if (professor.Cpf == cpf)
+    //    {
+    //        professorParaAlterarOsDados = professor;
+    //    }
+    //}
 }
